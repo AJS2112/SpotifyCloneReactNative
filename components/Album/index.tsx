@@ -9,7 +9,8 @@ export type AlbumProps = {
 const AlbumComponent = (props: AlbumProps) => {
     return (
         <View style={styles.container}>
-            <Image source={require('D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/albums/lte-lte3.jpg')} style={styles.image} />
+            {/* <Image source={require('D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/albums/lte-lte3.jpg')} style={styles.image} /> */}
+            <Image source={props.album.imageUri} style={styles.image} />
             <Text style={styles.text}>{props.album.artistHeadline}</Text>
         </View>
     );

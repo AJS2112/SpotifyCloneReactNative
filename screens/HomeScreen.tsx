@@ -1,40 +1,23 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { RootTabScreenProps } from '../types';
 import AlbumCategory from '../components/AlbumCategory';
-import { Album } from '../types';
-
-const albumX: Album = {
-  id: '1',
-  imageUri: 'D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/albumslte-lte3.jpg',
-  artistHeadline: 'Liquid Tension Experiment'
-};
-const albumY: Album = {
-  id: '2',
-  imageUri: 'D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/dt-avfttotw.jpg',
-  artistHeadline: 'Dream Theater'
-};
-const albumZ: Album = {
-  id: '3',
-  imageUri: 'D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/dt-avfttotw.jpg',
-  artistHeadline: 'Dream Theater'
-};
-
-const albumCategory = {
-  id: '1',
-  title: 'Prog Metal',
-  albums: [albumX, albumY, albumZ
-  ]
-}
+import AlbumCategories from '../data/albumCategories';
 
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
-  console.log(albumCategory)
+  console.log(AlbumCategories)
   return (
     <View style={styles.container}>
-      <AlbumCategory
-        id={albumCategory.id}
-        title={albumCategory.title}
-        albums={albumCategory.albums}
+      <FlatList
+        data={AlbumCategories}
+        renderItem={({ item }) => (
+          <AlbumCategory
+            id={item.id}
+            title={item.title}
+            albums={item.albums}
+          />
+        )}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
