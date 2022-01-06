@@ -1,18 +1,28 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import styles from './styles';
 import { Album } from '../../types';
+import { useNavigation } from "@react-navigation/native";
 
 export type AlbumProps = {
     album: Album
 }
 const AlbumComponent = (props: AlbumProps) => {
+
+    const navigation = useNavigation();
+
+    const onPress = () => {
+        console.log(`Album pressed:  ${props.album.artistHeadline}`)
+        navigation.navigate('AlbumScreen', { id: props.album.id });
+    }
+
     return (
-        <View style={styles.container}>
-            {/* <Image source={require('D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/albums/lte-lte3.jpg')} style={styles.image} /> */}
-            <Image source={props.album.imageUri} style={styles.image} />
-            <Text style={styles.text}>{props.album.artistHeadline}</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.container}>
+                <Image source={props.album.imageUri} style={styles.image} />
+                <Text style={styles.text}>{props.album.artistHeadline}</Text>
+            </View>
+        </TouchableWithoutFeedback>
     );
 }
 
