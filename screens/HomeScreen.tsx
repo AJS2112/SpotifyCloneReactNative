@@ -1,20 +1,41 @@
 import { StyleSheet, View, Text } from 'react-native';
 import { RootTabScreenProps } from '../types';
-import AlbumComponent from '../components/Album';
+import AlbumCategory from '../components/AlbumCategory';
+import { Album } from '../types';
 
-const album = {
+const albumX: Album = {
   id: '1',
   imageUri: 'D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/albumslte-lte3.jpg',
+  artistHeadline: 'Liquid Tension Experiment'
+};
+const albumY: Album = {
+  id: '2',
+  imageUri: 'D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/dt-avfttotw.jpg',
   artistHeadline: 'Dream Theater'
+};
+const albumZ: Album = {
+  id: '3',
+  imageUri: 'D:/repos/Youtube/SpotifyCloneReactNative/SpotifyClone/assets/images/dt-avfttotw.jpg',
+  artistHeadline: 'Dream Theater'
+};
+
+const albumCategory = {
+  id: '1',
+  title: 'Prog Metal',
+  albums: [albumX, albumY, albumZ
+  ]
 }
 
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
-  //console.log(album)
+  console.log(albumCategory)
   return (
     <View style={styles.container}>
-      <AlbumComponent album={album} />
-      <Text style={styles.text}>Here is goes the album</Text>
+      <AlbumCategory
+        id={albumCategory.id}
+        title={albumCategory.title}
+        albums={albumCategory.albums}
+      />
     </View>
   );
 }
