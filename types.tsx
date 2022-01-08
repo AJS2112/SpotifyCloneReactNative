@@ -20,13 +20,18 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type HomeStackParamList = {
+  Home: undefined;
+  AlbumScreen: { id: string };
+};
+
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
   RootStackParamList,
   Screen
 >;
 
 export type RootTabParamList = {
-  Home: undefined;
+  HomeStack: undefined;
   Search: undefined;
   Library: undefined;
   Premium: undefined;
